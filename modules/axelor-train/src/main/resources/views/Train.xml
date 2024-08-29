@@ -24,9 +24,14 @@
             <field name="arrivedDate"/>
             <field name="types"/>
 <!--            <field name="company" readonlyIf="statusSelect != 1 || partner != null" colSpan="4" onChange="action-group-account-invoice-company-onchange" form-view="wagon-form" grid-view="wagon-grid"/>-->
-            <field name="wagons" canSelect="true"/>
+            <field name="wagons" canSelect="true" onChange="updateWagonsCount"/>
+            <field name="wagonsCount" readonly="true"/>
         </panel>
     </form>
+
+    <action-attrs name="action-count-wagons">
+        <attribute name="wagonsCount" expr="eval: __this__.wagons?.size()" for="wagonsCount"/>
+    </action-attrs>
 
     <selection name="types.selection">
         <option value="DIESEL_ENGINE">DIESEL_ENGINE</option>
