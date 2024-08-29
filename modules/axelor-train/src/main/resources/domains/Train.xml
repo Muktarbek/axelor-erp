@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models https://axelor.com/xml/ns/domain-models/domain-models_7.1.xsd">
+
+    <module name="train" package="com.axelor.train.db"/>
+
+    <entity name="Trains"  cacheable="true" repository="default">
+        <string name="departureCountry" required="true" title="Departure Country"/>
+        <string name="departureStation" required="true" title="Departure Station"/>
+        <string name="destinationCustomsDepartment" required="true" title="Destination Customs Department"/>
+        <datetime name="arrivedDate" title="Arrived Date"/>
+        <string name="types" title="Type of Engine" selection="types.selection" default="DIESEL_ENGINE"/>
+        <string name="status" title="Status" selection="status.selection" default="ARRIVED"/>
+        <one-to-many name="wagons" ref="com.axelor.wagon.db.Wagons" mappedBy="train" title="Wagons"/>
+<!--        <string name="status" required="true" />-->
+<!--        <entity-listener class="com.axelor.company.service.CompanyEntityListener"/>-->
+<!--        <one-to-many name="employees" ref="com.axelor.employee.db.Employee" mappedBy="company" />-->
+    </entity>
+
+<!--    <enum name="Status">-->
+<!--        <item name="ARRIVED"/>-->
+<!--        <item name="DEPARTED"/>-->
+<!--    </enum>-->
+
+
+<!--    <enum name="Types">-->
+<!--        <item name="DIESEL_ENGINE"/>-->
+<!--        <item name="PETROL_ENGINE"/>-->
+<!--    </enum>-->
+</domain-models>

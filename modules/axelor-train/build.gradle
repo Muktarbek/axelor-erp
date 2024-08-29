@@ -1,0 +1,19 @@
+
+plugins {
+    id 'com.axelor.app'
+}
+
+axelor {
+    title = "Axelor :: Company"
+}
+
+//dependencies {
+//    api project(":modules:demo-employee")
+//}
+
+//dependencies {
+//    implementation project(path: ':modules:demo-employee')
+//}
+//dependencies {
+//    api project(':modules:demo-contact')
+//}

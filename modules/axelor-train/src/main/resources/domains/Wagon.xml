@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models https://axelor.com/xml/ns/domain-models/domain-models_7.1.xsd">
+
+    <module name="wagon" package="com.axelor.wagon.db"/>
+
+    <entity name="Wagons"  cacheable="true" repository="default">
+        <datetime name="date1" required="true" title="Date 1"/>
+        <datetime name="arrivedDate" title="Arrived Date"/>
+        <string name="customerName" required="true" title="Customer Name"/>
+        <string name="customerInn" title="Customer INN"/>
+        <integer name="wagonNumber" required="true" title="Wagon Number"/>
+        <string name="productCode" required="true" title="Product Code"/>
+        <string name="productName" required="true" title="Product Name"/>
+        <string name="stationCode" required="true" title="Station Code"/>
+        <string name="weight" required="true" title="Weight"/>
+        <string name="wagonTypeCode" required="true" title="Wagon Type Code"/>
+        <string name="wagonTypeExtended" title="Wagon Type Extended"/>
+        <integer name="status" required="true" title="Status"/>
+        <many-to-one name="train" ref="com.axelor.train.db.Trains" title="Train"/>
+    </entity>
+
+
+</domain-models>

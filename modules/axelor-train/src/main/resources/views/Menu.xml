@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_7.1.xsd">
+
+    <menuitem name="train-list" order="-100" title="Train Info" icon="fa-book" icon-background="green"/>
+
+    <menuitem name="train.list" parent="train-list"
+              title="Train"
+              action="train22"/>
+
+    <action-view name="train22" model="com.axelor.train.db.Trains" title="Train">
+        <view type="grid" name="train-grid"/>
+        <view type="form" name="train-form"/>
+    </action-view>
+
+<!--    <menuitem name="wagon-list" order="-100" title="Wagon Info" icon="fa-book" icon-background="green"/>-->
+
+    <menuitem name="wagon.list" parent="train-list"
+              title="Wagon"
+              action="wagon22"/>
+
+    <action-view name="wagon22" model="com.axelor.wagon.db.Wagons" title="Wagon">
+        <view type="grid" name="wagon-grid"/>
+        <view type="form" name="wagon-form"/>
+    </action-view>
+
+</object-views>

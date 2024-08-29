@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views https://axelor.com/xml/ns/object-views/object-views_7.1.xsd">
+
+    <grid name="wagon-grid" title="Wagon List" model="com.axelor.wagon.db.Wagons">
+        <field name="date1" />
+        <field name="arrivedDate" />
+        <field name="customerName"  />
+        <field name="customerInn" />
+        <field name="wagonNumber" />
+        <field name="productCode"  />
+        <field name="productName"  />
+        <field name="stationCode"  />
+        <field name="weight"  />
+        <field name="wagonTypeCode"  />
+        <field name="wagonTypeExtended" />
+        <field name="status" />
+        <field name="train"/>
+    </grid>
+    <form name="wagon-form" title="Wagon" model="com.axelor.wagon.db.Wagons">
+        <panel title="Overview">
+            <field name="date1" required="true" />
+            <field name="arrivedDate" />
+            <field name="customerName" required="true" />
+            <field name="customerInn" />
+            <field name="wagonNumber" required="true" />
+            <field name="productCode" required="true" />
+            <field name="productName" required="true" />
+            <field name="stationCode" required="true" />
+            <field name="weight" required="true" />
+            <field name="wagonTypeCode" required="true" />
+            <field name="wagonTypeExtended" />
+            <field name="status" required="true" />
+            <field name="train"/>
+        </panel>
+    </form>
+
+</object-views>
