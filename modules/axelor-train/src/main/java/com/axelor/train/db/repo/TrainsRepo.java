@@ -23,4 +23,5 @@ public class TrainsRepo extends TrainsRepository {
 //        int updatedCount = query.executeUpdate();
 //        System.out.println("Количество обновленных записей: " + updatedCount);
 //    }
+
 }

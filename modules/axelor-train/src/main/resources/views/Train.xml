@@ -12,36 +12,49 @@
         <field name="status"/>
         <field name="wagons"/>
     </grid>
-<!--    onSave="com.axelor.train.web.TrainsController:updateTrain"-->
-    <form name="train-form" title="Train" model="com.axelor.train.db.Trains">
+<!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
+    <form name="train-form" title="Train" model="com.axelor.train.db.Trains" onLoad="train-action" >
 <!--        <toolbar>-->
 <!--            <button name="edit" title="edit" onClick="com.axelor.train.web.TrainController:updateTrain"/>-->
 <!--        </toolbar>-->
         <panel title="Overview">
             <field name="departureCountry" colSpan="12"/>
-            <field name="departureStation"/>
-            <field name="destinationCustomsDepartment"/>
-            <field name="arrivedDate"/>
-            <field name="types"/>
+            <field name="departureStation" colSpan="6"/>
+            <field name="destinationCustomsDepartment" colSpan="6"/>
+            <field name="arrivedDate" colSpan="6"/>
+            <field name="types" colSpan="6"/>
 <!--            <field name="company" readonlyIf="statusSelect != 1 || partner != null" colSpan="4" onChange="action-group-account-invoice-company-onchange" form-view="wagon-form" grid-view="wagon-grid"/>-->
-            <field name="wagons" canSelect="true" onChange="updateWagonsCount"/>
-            <field name="wagonsCount" readonly="true"/>
+            <field name="wagons" canSelect="true" onChange="train.update-wagons-count" colSpan="12" />
+            <field name="Count" title="Wagons Count" readonly="true" showIf="true" colSpan="6"/>
+            <field name="$Weight" title="The heaviest train" readonly="true" showIf="true" colSpan="6"/>
         </panel>
     </form>
 
-    <action-attrs name="action-count-wagons">
-        <attribute name="wagonsCount" expr="eval: __this__.wagons?.size()" for="wagonsCount"/>
+    <action-group name="train-action">
+        <action name="train.find-max-weight"/>
+        <action name="train.update-wagons-count"/>
+        <action name="train.validate"/>
+    </action-group>
+
+    <action-validate name="train.validate">
+        <alert message="To display the classification number, please set up a sequence"
+               if="destinationCustomsDepartment==muktar" />
+    </action-validate>
+
+
+    <!-- Метод для вычисления максимального веса вагонов -->
+    <action-method name="train.find-max-weight">
+        <!-- Вызов метода в контроллере и сохранение результата в 'maxWeight' -->
+        <call class="com.axelor.train.web.TrainsController" method="findMaxWeight"/>
+    </action-method>
+
+
+    <action-attrs name="train.update-wagons-count">
+        <attribute name="value" expr="eval: __this__.wagons?.size()" for="Count"/>
     </action-attrs>
 
-    <selection name="types.selection">
-        <option value="DIESEL_ENGINE">DIESEL_ENGINE</option>
-        <option value="PETROL_ENGINE">PETROL_ENGINE</option>
-    </selection>
 
-    <selection name="status.selection">
-        <option value="ARRIVED">ARRIVED</option>
-        <option value="DEPARTED">DEPARTED</option>
-    </selection>
+
 
     <!--            onChange="com.axelor.company.web.CompaniesController:updateCompany"-->
     <!--            <button name="btnTotalAmount" onClick="com.axelor.company.web.CompaniesController:updateCompany" title="Edit"/>-->

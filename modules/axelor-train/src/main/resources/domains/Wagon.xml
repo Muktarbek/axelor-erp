@@ -14,7 +14,7 @@
         <string name="productCode" required="true" title="Product Code"/>
         <string name="productName" required="true" title="Product Name"/>
         <string name="stationCode" required="true" title="Station Code"/>
-        <string name="weight" required="true" title="Weight"/>
+        <integer name="weight" required="true" title="Weight"/>
         <string name="wagonTypeCode" required="true" title="Wagon Type Code"/>
         <string name="wagonTypeExtended" title="Wagon Type Extended"/>
         <integer name="status" required="true" title="Status"/>
