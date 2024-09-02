@@ -20,22 +20,23 @@ public class WagonController {
     @Inject
     private WagonsServiceImpl wagonsService;
 
-    @CallMethod
-    public void updateWagon(ActionRequest request, ActionResponse response) {
-        if (request.getContext().get("id") == null) {
-            JPA.edit(Wagons.class, request.getContext());
-        } else {
-            Wagons companies = request.getContext().asType(Wagons.class);
-            System.out.println(companies);
-            companies.setId((Long) request.getContext().get("id"));
+//    @CallMethod
+//    public void updateWagon(ActionRequest request, ActionResponse response) {
+//        if (request.getContext().get("id") == null) {
+//            JPA.edit(Wagons.class, request.getContext());
+//        } else {
+//            Wagons companies = request.getContext().asType(Wagons.class);
+//            System.out.println(companies);
+//            companies.setId((Long) request.getContext().get("id"));
+//
+//            try {
 
-            try {
-                wagonsService.updateWagon(companies);
-                response.setInfo("Данные успешно обновлены");
-            } catch (RuntimeException e) {
-//                    response.setError(e.getMessage());
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+//                wagonsService.updateWagon(companies);
+//                response.setInfo("Данные успешно обновлены");
+//            } catch (RuntimeException e) {
+////                    response.setError(e.getMessage());
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
 }

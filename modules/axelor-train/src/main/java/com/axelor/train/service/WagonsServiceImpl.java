@@ -10,8 +10,8 @@ public class WagonsServiceImpl implements WagonsService {
     @Inject
     private WagonsRepo wagonsRepository;
 
-    @Override
-    public void updateWagon(Wagons wagons) {
-        wagonsRepository.save(wagons);
-    }
+//    @Override
+//    public void updateWagon(Wagons wagons) {
+//        wagonsRepository.save(wagons);
+//    }
 }

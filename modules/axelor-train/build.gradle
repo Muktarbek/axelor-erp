@@ -7,9 +7,10 @@ axelor {
     title = "Axelor :: Company"
 }
 
-//dependencies {
+dependencies {
 //    api project(":modules:demo-employee")
-//}
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+}
 
 //dependencies {
 //    implementation project(path: ':modules:demo-employee')

@@ -6,10 +6,11 @@
         <field name="id"/>
         <field name="departureCountry"/>
         <field name="departureStation"/>
-        <field name="destinationCustomsDepartment"/>
+        <field name="destinationStation"/>
         <field name="arrivedDate"/>
         <field name="types"/>
         <field name="status"/>
+        <field name="wagonsNumber"/>
         <field name="wagons"/>
     </grid>
 <!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
@@ -20,9 +21,10 @@
         <panel title="Overview">
             <field name="departureCountry" colSpan="12"/>
             <field name="departureStation" colSpan="6"/>
-            <field name="destinationCustomsDepartment" colSpan="6"/>
+            <field name="destinationStation" colSpan="6"/>
             <field name="arrivedDate" colSpan="6"/>
             <field name="types" colSpan="6"/>
+            <field name="wagonsNumber"/>
 <!--            <field name="company" readonlyIf="statusSelect != 1 || partner != null" colSpan="4" onChange="action-group-account-invoice-company-onchange" form-view="wagon-form" grid-view="wagon-grid"/>-->
             <field name="wagons" canSelect="true" onChange="train.update-wagons-count" colSpan="12" />
             <field name="Count" title="Wagons Count" readonly="true" showIf="true" colSpan="6"/>
@@ -34,6 +36,7 @@
         <action name="train.find-max-weight"/>
         <action name="train.update-wagons-count"/>
         <action name="train.validate"/>
+        <action name="train.processInputJson"/>
     </action-group>
 
     <action-validate name="train.validate">
@@ -52,6 +55,10 @@
     <action-attrs name="train.update-wagons-count">
         <attribute name="value" expr="eval: __this__.wagons?.size()" for="Count"/>
     </action-attrs>
+
+    <action-method name="train.processInputJson">
+        <call class="com.axelor.train.web.TrainsController" method="processInputJson"/>
+    </action-method>
 
 
 

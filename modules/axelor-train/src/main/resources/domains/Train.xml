@@ -6,12 +6,14 @@
     <module name="train" package="com.axelor.train.db"/>
 
     <entity name="Trains"  cacheable="true" repository="default">
+        <integer name="trainNumber"/>
         <string name="departureCountry" required="true" title="Departure Country"/>
         <string name="departureStation" required="true" title="Departure Station"/>
-        <string name="destinationCustomsDepartment" required="true" title="Destination Customs Department"/>
+        <string name="destinationStation" required="true" title="Destination Customs Department"/>
         <datetime name="arrivedDate" title="Arrived Date"/>
         <string name="types" title="Type of Engine" selection="types.selection" default="DIESEL_ENGINE"/>
         <string name="status" title="Status" selection="status.selection" default="ARRIVED"/>
+        <integer name="wagonsNumber" title ="Wagon number"/>
         <one-to-many name="wagons" ref="com.axelor.wagon.db.Wagons" mappedBy="train" title="Wagons"/>
 <!--        <string name="status" required="true" />-->
 <!--        <entity-listener class="com.axelor.company.service.CompanyEntityListener"/>-->

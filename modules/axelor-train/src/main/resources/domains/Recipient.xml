@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models https://axelor.com/xml/ns/domain-models/domain-models_7.1.xsd">
+
+    <module name="recipient" package="com.axelor.recipient.db"/>
+
+    <entity name="Recipient"  cacheable="true" repository="default">
+      <string name="type" required="true" title="type"/>
+      <string name="companyName" required="true" title="companyName"/>
+      <integer name="taxpayerID" required="true" title="taxpayerID"/>
+      <string name="okpo" required="true" title="okpo"/>
+      <string name="country" required="true" title="country"/>
+        <integer name="personalINN" required="true" title=""/>
+      <string name="firstName" required="true" title="firstName"/>
+      <string name="lastName" required="true" title="lastName"/>
+      <string name="patronymic" required="true" title="patronymic"/>
+        <one-to-many name="products" ref="com.axelor.product.db.Products"  title="Products"/>
+    </entity>
+</domain-models>
