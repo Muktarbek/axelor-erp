@@ -1,7 +1,10 @@
 package com.axelor.train.web;
 
+import com.axelor.cargoInfo.db.CargoInfo;
 import com.axelor.db.JPA;
+import com.axelor.product.db.Products;
 import com.axelor.rpc.Response;
+import com.axelor.train.db.repo.ProductRepo;
 import com.axelor.train.db.repo.TrainsRepo;
 import com.axelor.meta.CallMethod;
 import com.axelor.rpc.ActionRequest;
@@ -32,6 +35,8 @@ public class  TrainsController {
     private TrainsServiceImpl trainsService;
     @Inject
     private TrainsRepo trainsRepository;
+    @Inject
+    private ProductRepo productRepository;
 
     @CallMethod
 //    public void updateTrain(ActionRequest request, ActionResponse response) {
@@ -82,10 +87,21 @@ public class  TrainsController {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         try {
-            Trains trains = objectMapper.readValue(inputJson, Trains.class);
+            Trains train = objectMapper.readValue(inputJson, Trains.class);
+            System.out.println(train.toString());
+        //    train.clearWagons();
+            for (Wagons wagon : train.getWagons()) {
+                System.out.println(wagon.toString());
+                for (CargoInfo cargoInfo : wagon.getCargoInfo()) {
+                    System.out.println(cargoInfo.getRecipient().toString());
+                    for (Products product : cargoInfo.getRecipient().getProducts()) {
+                        System.out.println(product.toString());
+                        productRepository.save(product);
 
-            // Теперь вы можете использовать объект train
-            System.out.println(trains.getTrainNumber());
+                    }
+                }
+            }
+         //    trainsRepository.save(train);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,7 +109,7 @@ public class  TrainsController {
 
         // Логика обработки JSON
       //  response.setInfo("JSON успешно обработан!");
-        System.out.println("Hello");
+
         return new Response();
     }
 }

@@ -36,7 +36,7 @@
         <action name="train.find-max-weight"/>
         <action name="train.update-wagons-count"/>
         <action name="train.validate"/>
-        <action name="train.processInputJson"/>
+<!--        <action name="train.processInputJson"/>-->
     </action-group>
 
     <action-validate name="train.validate">

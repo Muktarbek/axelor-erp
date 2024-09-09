@@ -9,7 +9,7 @@
         <field name="stationCode"/>
         <field name="weight" />
         <field name="wagonTypeCode"/>
-        <field name="train" />
+<!--        <field name="train" />-->
         <field name="cargoInfo"/>
 
     </grid>
@@ -21,7 +21,7 @@
             <field name="stationCode"/>
             <field name="weight" />
             <field name="wagonTypeCode"/>
-            <field name="train" />
+<!--            <field name="train" />-->
             <field name="cargoInfo"/>
         </panel>
     </form>

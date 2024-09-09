@@ -6,10 +6,10 @@
     <module name="product" package="com.axelor.product.db"/>
 
     <entity name="Products"  cacheable="true" repository="default">
-        <string name="productCode" required="true" title="Product Code"/>
-        <string name="productName" required="true" title="Product Name"/>
-        <integer name="productNetWeight" required="true" title="Product Net Weight"/>
-        <integer name="productGrossWeight" required="true" title="Product Gross Weight"/>
-        <string name="packingType" required="true" title="Packing Type"/>
+        <string name="productCode"  title="Product Code"/>
+        <string name="productName"  title="Product Name"/>
+        <integer name="productNetWeight"  title="Product Net Weight"/>
+        <integer name="productGrossWeight"  title="Product Gross Weight"/>
+        <string name="packingType" title="Packing Type"/>
     </entity>
 </domain-models>

@@ -7,13 +7,13 @@
 
     <entity name="Wagons"  cacheable="true" repository="default">
         <datetime name="arrivedDate" title="Arrived Date"/>
-        <integer name="wagonNumber" required="true" title="Wagon number"/>
+        <integer name="wagonNumber"  title="Wagon number"/>
         <string name="wagonCountry" title="Wagon country"/>
-        <string name="stationCode" required="true" title="Station Code"/>
-        <integer name="weight" required="true" title="Weight"/>
-        <string name="wagonTypeCode" required="true" title="Wagon Type Code"/>
-        <many-to-one name="train" ref="com.axelor.train.db.Trains" title="Train"/>
-        <one-to-many name="cargoInfo" ref="com.axelor.recipient.db.Recipient" title="Cargo info"/>
+        <string name="stationCode"  title="Station Code"/>
+        <integer name="weight"  title="Weight"/>
+        <string name="wagonTypeCode"  title="Wagon Type Code"/>
+<!--        <many-to-one name="train" ref="com.axelor.train.db.Trains" title="Train"/>-->
+        <one-to-many name="cargoInfo" ref="com.axelor.cargoInfo.db.CargoInfo" title="Cargo info"/>
     </entity>
 
 
