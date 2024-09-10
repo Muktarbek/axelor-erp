@@ -58,21 +58,14 @@ public class  TrainsController {
 //    }
 
     public void findMaxWeight(ActionRequest request, ActionResponse response) {
-        List<Trains> trains = trainsRepository.all().fetch();
 
-        Map<Trains, Double> totalWeightsByTrain = trains.stream()
-                .collect(Collectors.toMap(
-                        train -> train,
-                        train -> train.getWagons().stream()
-                                .mapToDouble(wagon -> wagon.getWeight() != null ? wagon.getWeight() : 0.0)
-                                .sum()
-                ));
-        //     Нахождение поезда с максимальным весом
-        Double heaviestTrain = totalWeightsByTrain.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .orElse(null).getValue();
+        Trains train = request.getContext().asType(Trains.class);
+        int heaviestWagon =  train.getWagons().stream()
+                .map(Wagons::getWeight)
+                .max(Comparator.naturalOrder())
+                .orElse(0);
 
-        response.setValue("$Weight", heaviestTrain);
+        response.setValue("$Weight", heaviestWagon);
     }
 
     @POST
@@ -80,36 +73,17 @@ public class  TrainsController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response processInputJson(JsonNode requestBody) {
-
-      String inputJson = requestBody.toString();
-    //   System.out.println(inputJson);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
+        Response response = new Response();
+        String inputJson = requestBody.toString();
         try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
             Trains train = objectMapper.readValue(inputJson, Trains.class);
-            System.out.println(train.toString());
-        //    train.clearWagons();
-            for (Wagons wagon : train.getWagons()) {
-                System.out.println(wagon.toString());
-                for (CargoInfo cargoInfo : wagon.getCargoInfo()) {
-                    System.out.println(cargoInfo.getRecipient().toString());
-                    for (Products product : cargoInfo.getRecipient().getProducts()) {
-                        System.out.println(product.toString());
-                        productRepository.save(product);
-
-                    }
-                }
-            }
-         //    trainsRepository.save(train);
+            trainsService.save(train);
+            response.setStatus(200);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        // Логика обработки JSON
-      //  response.setInfo("JSON успешно обработан!");
-
-        return new Response();
+        return response;
     }
 }

@@ -4,6 +4,7 @@
 
     <grid name="train-grid" title="Train List" model="com.axelor.train.db.Trains">
         <field name="id"/>
+        <field name="trainNumber"/>
         <field name="departureCountry"/>
         <field name="departureStation"/>
         <field name="destinationStation"/>
@@ -14,12 +15,13 @@
         <field name="wagons"/>
     </grid>
 <!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
-    <form name="train-form" title="Train" model="com.axelor.train.db.Trains" onLoad="train-action" >
+    <form name="train-form" title="Train" model="com.axelor.train.db.Trains" onLoad="train-action" onSave="train-action" >
 <!--        <toolbar>-->
 <!--            <button name="edit" title="edit" onClick="com.axelor.train.web.TrainController:updateTrain"/>-->
 <!--        </toolbar>-->
         <panel title="Overview">
-            <field name="departureCountry" colSpan="12"/>
+            <field name="trainNumber" colSpan="6" />
+            <field name="departureCountry" colSpan="6"/>
             <field name="departureStation" colSpan="6"/>
             <field name="destinationStation" colSpan="6"/>
             <field name="arrivedDate" colSpan="6"/>
@@ -35,14 +37,14 @@
     <action-group name="train-action">
         <action name="train.find-max-weight"/>
         <action name="train.update-wagons-count"/>
-        <action name="train.validate"/>
+        <action name="action-validate"/>
 <!--        <action name="train.processInputJson"/>-->
     </action-group>
 
-    <action-validate name="train.validate">
-        <alert message="To display the classification number, please set up a sequence"
-               if="destinationCustomsDepartment==muktar" />
-    </action-validate>
+<!--    <action-validate name="train.validate">-->
+<!--        <alert message="To display the classification number, please set up a sequence"-->
+<!--               if="destinationCustomsDepartment=='muktar'" />-->
+<!--    </action-validate>-->
 
 
     <!-- Метод для вычисления максимального веса вагонов -->
@@ -59,6 +61,10 @@
     <action-method name="train.processInputJson">
         <call class="com.axelor.train.web.TrainsController" method="processInputJson"/>
     </action-method>
+
+    <action-validate name="action-validate">
+    <alert message="Create Date is in future." if="arrivedDate &gt; __time__"/>
+   </action-validate>
 
 
 

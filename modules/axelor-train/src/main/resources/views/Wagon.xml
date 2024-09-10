@@ -10,7 +10,7 @@
         <field name="weight" />
         <field name="wagonTypeCode"/>
 <!--        <field name="train" />-->
-        <field name="cargoInfo"/>
+<!--        <field name="cargoInfo"/>-->
 
     </grid>
     <form name="wagon-form" title="Wagon" model="com.axelor.wagon.db.Wagons">
@@ -22,7 +22,7 @@
             <field name="weight" />
             <field name="wagonTypeCode"/>
 <!--            <field name="train" />-->
-            <field name="cargoInfo"/>
+<!--            <field name="cargoInfo"/>-->
         </panel>
     </form>
 
