@@ -2,6 +2,7 @@ package com.axelor.train.web;
 
 import com.axelor.cargoInfo.db.CargoInfo;
 import com.axelor.db.JPA;
+import com.axelor.i18n.I18n;
 import com.axelor.product.db.Products;
 import com.axelor.rpc.Response;
 import com.axelor.train.db.repo.ProductRepo;
@@ -66,6 +67,20 @@ public class  TrainsController {
                 .orElse(0);
 
         response.setValue("$Weight", heaviestWagon);
+    }
+    public void reportMonthly(ActionRequest request, ActionResponse response) {
+        System.out.println("Hello");
+        // ...
+        Map<String, Object> data = new HashMap<>();
+        data.put("total", 565);
+        data.put("percent", 787);
+        data.put("up",15);
+        data.put("tag", I18n.get("Monthly"));
+        data.put("tagCss", "label-success");
+
+        // This data will be put into dataset.
+        // For report-box, we send a list with a single item accessible as `first`.
+        response.setData(List.of(data));
     }
 
     @POST

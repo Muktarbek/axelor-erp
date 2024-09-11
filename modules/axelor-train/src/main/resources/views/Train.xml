@@ -13,7 +13,35 @@
         <field name="status"/>
         <field name="wagonsNumber"/>
         <field name="wagons"/>
+
     </grid>
+    <!-- Custom view definition using report-box template -->
+    <custom name="train-custom" title="Train lines">
+        <!-- Define fields matching JPQL results -->
+        <field name="trainNumber1" title="Train number"/>
+        <field name="wagonsNumber1" title="Wagons number" type="string" x-translatable="true"/>
+
+        <!-- Define JPQL dataset -->
+        <dataset type="jpql" limit="40">
+            <![CDATA[
+            SELECT self.trainNumber AS trainNumber1,
+                   self.wagonsNumber AS wagonsNumber1
+            FROM Trains self
+            ]]>
+        </dataset>
+
+        <!-- Corrected template for display -->
+        <template>
+            <![CDATA[
+            <report-table>
+                <column name="trainNumber1" title="Train number"/>
+                <column name="wagonsNumber1" title="Wagons number"/>
+            </report-table>
+            ]]>
+        </template>
+    </custom>
+
+
 <!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
     <form name="train-form" title="Train" model="com.axelor.train.db.Trains" onLoad="train-action" onSave="train-action" >
 <!--        <toolbar>-->

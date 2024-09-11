@@ -12,6 +12,7 @@
     <action-view name="train22" model="com.axelor.train.db.Trains" title="Train">
         <view type="grid" name="train-grid"/>
         <view type="form" name="train-form"/>
+        <view type="custom" name="train-custom"/>
     </action-view>
 
 <!--    <menuitem name="wagon-list" order="-100" title="Wagon Info" icon="fa-book" icon-background="green"/>-->
