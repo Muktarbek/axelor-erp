@@ -15,8 +15,35 @@
         <field name="wagons"/>
 
     </grid>
-    <!-- Custom view definition using report-box template -->
-    <custom name="train-custom" title="Train lines">
+<!--    &lt;!&ndash; Custom view definition using report-box template &ndash;&gt;-->
+<!--    <custom name="train-custom" title="Train lines">-->
+<!--        &lt;!&ndash; Define fields matching JPQL results &ndash;&gt;-->
+<!--        <field name="trainNumber1" title="Train number"/>-->
+<!--        <field name="wagonsNumber1" title="Wagons number" type="string" x-translatable="true"/>-->
+
+<!--        &lt;!&ndash; Define JPQL dataset &ndash;&gt;-->
+<!--        <dataset type="jpql" limit="40">-->
+<!--            <![CDATA[-->
+<!--            SELECT self.trainNumber AS trainNumber1,-->
+<!--                   self.wagonsNumber AS wagonsNumber1-->
+<!--            FROM Trains self-->
+<!--            ]]>-->
+<!--        </dataset>-->
+
+<!--        &lt;!&ndash; Corrected template for display &ndash;&gt;-->
+<!--        <template>-->
+<!--            <![CDATA[-->
+<!--            <report-table>-->
+<!--                <column name="trainNumber1" title="Train number"/>-->
+<!--                <column name="wagonsNumber1" title="Wagons number"/>-->
+<!--            </report-table>-->
+<!--            ]]>-->
+<!--        </template>-->
+<!--    </custom>-->
+
+
+    <!-- Custom view definition using XSLT template -->
+    <custom name="train-custom" title="Train lines" >
         <!-- Define fields matching JPQL results -->
         <field name="trainNumber1" title="Train number"/>
         <field name="wagonsNumber1" title="Wagons number" type="string" x-translatable="true"/>
@@ -24,25 +51,55 @@
         <!-- Define JPQL dataset -->
         <dataset type="jpql" limit="40">
             <![CDATA[
-            SELECT self.trainNumber AS trainNumber1,
-                   self.wagonsNumber AS wagonsNumber1
-            FROM Trains self
-            ]]>
+        SELECT self.trainNumber AS trainNumber1,
+               self.wagonsNumber AS wagonsNumber1
+        FROM Trains self
+        ]]>
         </dataset>
 
-        <!-- Corrected template for display -->
+        <!-- XSLT template for display -->
         <template>
             <![CDATA[
-            <report-table>
-                <column name="trainNumber1" title="Train number"/>
-                <column name="wagonsNumber1" title="Wagons number"/>
-            </report-table>
-            ]]>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <html>
+            <head>
+                <style>
+                    table { border-collapse: collapse; width: 100%; }
+                    th, td { border: 1px solid black; padding: 8px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                </style>
+            </head>
+            <body>
+                <h2>Train Lines Report</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Train number</th>
+                            <th>Wagons number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- XSLT for iterating over the dataset -->
+                        <xsl:for-each select="//dataset/row">
+                            <tr>
+                                <td><xsl:value-of select="trainNumber1"/></td>
+                                <td><xsl:value-of select="wagonsNumber1"/></td>
+                            </tr>
+                        </xsl:for-each>
+                    </tbody>
+                </table>
+            </body>
+        </html>
+        ]]>
         </template>
     </custom>
 
 
-<!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
+
+
+
+
+    <!--   < onSave="com.axelor.train.web.TrainsController:updateTrain"/>-->
     <form name="train-form" title="Train" model="com.axelor.train.db.Trains" onLoad="train-action" onSave="train-action" >
 <!--        <toolbar>-->
 <!--            <button name="edit" title="edit" onClick="com.axelor.train.web.TrainController:updateTrain"/>-->

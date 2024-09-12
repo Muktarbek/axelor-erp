@@ -934,6 +934,7 @@
   <action-view name="accounting.dashboard.invoice.terms.view"
     title="Accounting Details with invoice terms">
     <view type="dashboard" name="accounting.dashboard.invoice.terms.sample"/>
+
   </action-view>
   <!-- Move template -->
 

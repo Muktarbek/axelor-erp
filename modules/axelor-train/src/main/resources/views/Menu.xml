@@ -15,6 +15,11 @@
         <view type="custom" name="train-custom"/>
     </action-view>
 
+<!--    <action-view name="accounting.dashboard.invoice.terms.view"-->
+<!--                 title="Accounting Details with invoice terms">-->
+<!--        <view type="dashboard" name="accounting.dashboard.invoice.terms.sample"/>-->
+<!--    </action-view>-->
+
 <!--    <menuitem name="wagon-list" order="-100" title="Wagon Info" icon="fa-book" icon-background="green"/>-->
 
     <menuitem name="wagon.list" parent="train-list"
